@@ -1,0 +1,114 @@
+  #map{
+    width: 97%;
+    height: 525px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid rgb(52, 78, 107);
+    top: 10px;
+  }
+  
+  .landing {
+    text-align: center;
+    padding: 100px 0;
+  }
+  
+  .container {
+    display: inline-block;
+    width: 50%;
+    height: 200px;
+  }
+  
+  .inquiry {
+    text-align: center;
+  }
+  
+  .mapWrap {
+    width: 95%;
+    height: 550px;
+    background-color: rgb(52, 78, 107);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .searchParams {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  
+  .filter {
+    display: flex;
+    flex-direction: row;    
+    justify-content: space-between;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .appInfo {
+    text-align: left;
+    line-height: 1.3;
+    margin-top: 75px;
+  }
+  
+  .bottom {
+    margin-top: 75px;
+  }
+  
+  @media screen and (max-width: 635px) {
+    .container {
+      width: 75%;
+    }
+  
+    .searchParams {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    .inquiry {
+      top: 50%;
+      left: 50%;
+    }
+  
+    .filter {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+    }
+  
+    .all {
+      margin-top: 10px;
+    }
+  
+    .pub {
+      margin-top: 10px;
+    }
+  
+    .micro {
+      margin-top: 10px;
+    }
+  
+    .regional {
+      margin-top: 10px;
+    }
+  
+    .large {
+      margin-top: 10px;
+    }
+  
+    .new {
+      width: 200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .search {
+      margin-top: 10px;
+    }
+  }
+  
+  
+  
+  
+  

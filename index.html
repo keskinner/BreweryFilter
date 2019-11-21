@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>brewery filter search</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <section class="landing">
+      <div class="container">
+          <h1>Brewery Filter</h1>
+          <div class="appInfo">
+            <p>Find your new Saturday spot here! <strong>Brewery Filter</strong> is an app that lets you search for a number of breweries in a given city. You can narrow down your search if you're looking for brewery/pubs, miro breweries, large breweries, or regional breweries.</p>
+          </div>
+          <div class="bottom">
+            <input id="city" type="text" placeholder="Search by city">
+            <button class="search button">Search</button>
+          </div>
+      </div>
+    </section>
+    <section class="inquiry">
+      <div class="mapBox">
+        <div class="mapWrap">
+          <div id="map"></div>
+        </div>
+      </div>
+      <div class="searchParams">
+        <div class="display"></div>
+        <h2>Filter search by:</h2>
+        <div class="filter">
+          <button class="all button">Show All</button>
+          <button class="pub button">Show Brewery/Pubs</button>
+          <button class="micro button">Show Micro Breweries</button>
+          <button class="large button">Show Large Breweries</button>
+          <button class="regional button">Show Regional Breweries</button>
+        </div>
+        <button class="new button">Searh New A City</button>
+      </div>
+    </section>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcWXnfXKLVvCd785O_mcnwStiL8K3D1JE&libraries=places"
+    async defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"       integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+      <script src="index.js"></script>
+  </body>
+</html>
