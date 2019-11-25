@@ -32,7 +32,7 @@ function watchSearch() {
   });
 }
 
-//centers map over users input city
+//fetches lat and lng of city searched
 function fetchCity(query) {
   const params = {
     address: query,
@@ -50,6 +50,7 @@ function fetchCity(query) {
     });
 }
 
+//fetches brewpubs in a city
 function fetchBrewpub(query) {
    const params = {
     by_city: query,
@@ -67,6 +68,7 @@ function fetchBrewpub(query) {
   })
 }
 
+//fetches micro breweries in a city
 function fetchMicro(query) {
   const params = {
     by_city: query,
@@ -84,6 +86,7 @@ function fetchMicro(query) {
   })
 }
 
+//fetches large breweries in a city
 function fetchLarge(query) {
   const params = {
     by_city: query,
@@ -101,6 +104,7 @@ function fetchLarge(query) {
   })
 }
 
+//fetches regional breweries in a city
 function fetchRegional(query) {
   const params = {
     by_city: query,
@@ -135,19 +139,21 @@ function fetchAll(query) {
     console.log(error)});
 }
 
+//formats params and joins the query with +
 function formatingQueryParams(params) {
   console.log('Query params are formatted!');
   const queryItems = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
   return queryItems.join('+');
 }
 
-
+//formats params and joins the query with &
 function formatQueryParams(params) {
   console.log('Query params are formatted!');
   const queryItems = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
   return queryItems.join('&');
 }
 
+//displays map and centers it according to the city that is searched
 function displayMap(responseJson) {
   
   const lat= responseJson.results[0].geometry.location.lat;
@@ -181,24 +187,12 @@ function displayMarkers(responseJson) {
 
     markerArr.push(marker);
 
-//creates info for marker  
-    var contentString = `<div class="content">` + `<p>${responseJson[i].street}</p>` + `<p>${responseJson[i].city}, ${responseJson[i].state}</p>` + `<p>${responseJson[i].phone}</p>` + `<a href="${responseJson[i].website_url}" method="get">${responseJson[i].website_url}</a>` + `</div>`
-
-//puts content inside info window
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-
-//creates a info window by clicking on marker
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
-
     console.log('markers made and displayed');
   }
   console.log('markers displayed');
 }
 
+//displays markers for all breweries when button clicked
 function watchAll() {
   $('button.all').on('click', event => {
     makeMarkerArr();
@@ -208,6 +202,7 @@ function watchAll() {
   })
 }
 
+//display markers for brewpubs when button clicked
 function watchBrewpub() {
   $('button.pub').on('click', event => {
     makeMarkerArr();
@@ -218,6 +213,7 @@ function watchBrewpub() {
   })
 }
 
+//displays markers for micro breweries when button clicked
 function watchMicro() {
   $('button.micro').on('click', event => {
     makeMarkerArr();
@@ -228,6 +224,7 @@ function watchMicro() {
   })
 }
 
+//displays markers for large breweries when button clicked
 function watchLarge() {
   $('button.large').on('click', event => {
     makeMarkerArr();
@@ -238,6 +235,7 @@ function watchLarge() {
   })
 }
 
+//displays markers for regional breweries when button clicked
 function watchRegional() {
   $('button.regional').on('click', event => {
     makeMarkerArr();
@@ -248,13 +246,14 @@ function watchRegional() {
   })
 }
 
+//sets all markers to zero
 function makeMarkerArr() {
   markerArr.forEach(function(marker) {
     marker.setMap(null);
   })
 }
 
-
+//watches search new city button
 function watchNewCitySearch() {
   $('button.new').on('click', event => {
     console.log('new city button clicked');
