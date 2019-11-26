@@ -27,7 +27,6 @@ function watchSearch() {
   $('button.search.button').on('click', event => {
     var searchInput = $('#city').val();
     fetchCity(searchInput);
-    fetchAll(searchInput);
     console.log('landing page hidden');
   });
 }
@@ -49,6 +48,23 @@ function fetchCity(query) {
     console.log(error)
     });
 }
+
+//fetches ALL the breweries in a city
+function fetchAll(query) {
+    const params = {
+      by_city: query,
+    }
+    const queryString = formatingQueryParams(params);
+    const url = beerUrl + queryString;
+    console.log(url);
+  
+    fetch(url)
+    .then(response => response.json())
+    .then(responseJson => displayMarkers(responseJson))
+    .catch(error => {
+      alert("There are no Breweries in this city. Please enter a different city.");
+      console.log(error)});
+  }
 
 //fetches brewpubs in a city
 function fetchBrewpub(query) {
@@ -122,23 +138,6 @@ function fetchRegional(query) {
   })
 }
 
-//fetches ALL the breweries in a city
-function fetchAll(query) {
-  const params = {
-    by_city: query,
-  }
-  const queryString = formatingQueryParams(params);
-  const url = beerUrl + queryString;
-  console.log(url);
-
-  fetch(url)
-  .then(response => response.json())
-  .then(responseJson => displayMarkers(responseJson))
-  .catch(error => {
-    alert("There are no Breweries in this city. Please enter a different city.");
-    console.log(error)});
-}
-
 //formats params and joins the query with +
 function formatingQueryParams(params) {
   console.log('Query params are formatted!');
@@ -187,8 +186,14 @@ function displayMarkers(responseJson) {
 
     markerArr.push(marker);
 
-    console.log('markers made and displayed');
   }
+
+  if (responseJson && responseJson.length) {
+    markerArr.push(marker);
+  } else {
+    alert("There are no breweries to show.");
+  }
+
   console.log('markers displayed');
 }
 
