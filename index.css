@@ -3,7 +3,6 @@
     height: 525px;
     margin-left: auto;
     margin-right: auto;
-    border: 2px solid rgb(52, 78, 107);
     top: 10px;
   }
   
@@ -25,7 +24,6 @@
   .mapWrap {
     width: 95%;
     height: 550px;
-    background-color: rgb(52, 78, 107);
     margin-left: auto;
     margin-right: auto;
   }

@@ -27,6 +27,7 @@ function watchSearch() {
   $('button.search.button').on('click', event => {
     var searchInput = $('#city').val();
     fetchCity(searchInput);
+    fetchAll(searchInput);
     console.log('landing page hidden');
   });
 }
@@ -131,7 +132,7 @@ function fetchRegional(query) {
 
   fetch(rUrl)
   .then(response => response.json())
-  .then(responseJson => displayMarkers(responseJson))
+  .then(responseJson => displayMarkers(reponseJson))
   .catch(error => {
     alert("There are no regional breweries in this city.");
     console.log(error)
@@ -154,7 +155,7 @@ function formatQueryParams(params) {
 
 //displays map and centers it according to the city that is searched
 function displayMap(responseJson) {
-  
+    
   const lat= responseJson.results[0].geometry.location.lat;
   const lng = responseJson.results[0].geometry.location.lng;
   console.log(responseJson);
@@ -162,15 +163,17 @@ function displayMap(responseJson) {
    map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: lat, lng: lng},
     zoom: 10
-    });
-  
+    }); 
+
   console.log('map displayed');
-  $('.landing').hide();
-  $('.inquiry').show();
 }
 
 //creates markers for breweries in picked city
 function displayMarkers(responseJson) {
+
+    if (!responseJson || responseJson.length === 0) {
+        return alert("There are no breweries to show.");
+      }
 
   for (let i = 0; i < responseJson.length; i++) {
   
@@ -185,16 +188,11 @@ function displayMarkers(responseJson) {
     });
 
     markerArr.push(marker);
-
-  }
-
-  if (responseJson && responseJson.length) {
-    markerArr.push(marker);
-  } else {
-    alert("There are no breweries to show.");
   }
 
   console.log('markers displayed');
+  $('.landing').hide();
+  $('.inquiry').show();
 }
 
 //displays markers for all breweries when button clicked
