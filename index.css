@@ -1,8 +1,19 @@
+body {
+    background-color: white;
+    color: rgb(52, 78, 107);
+    font-family: courier;
+  }
+  
+  h1 {
+    font-size: 36px;
+  }
+  
   #map{
-    width: 97%;
+    width: 95%;
     height: 525px;
     margin-left: auto;
     margin-right: auto;
+    border: 2px solid rgb(52, 78, 107);
     top: 10px;
   }
   
@@ -24,23 +35,207 @@
   .mapWrap {
     width: 95%;
     height: 550px;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: rgb(52, 78, 107);
+    left: 10px;
   }
+
+  /*.list {
+    right: 10px;
+    height: 550px;
+    width: 30%;
+    top: 10px;
+    line-height: 1.3;
+  }*/
   
   .searchParams {
     margin-left: auto;
     margin-right: auto;
   }
   
+  button.search.button {
+      box-shadow: 0px 1px 0px 0px #f0f7fa;
+      background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+      background-color:#33bdef;
+      border-radius:6px;
+      border:1px solid #057fd0;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:15px;
+      font-weight:bold;
+      padding:6px 16px;
+      text-decoration:none;
+      text-shadow:0px -1px 0px #5b6178;
+    margin-left: 5px;
+  }
+  button.search.button:hover {
+      background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+      background-color:#019ad2;
+  }
+  button.search.button:active {
+      position:relative;
+      top:1px;
+  }
+  
+  button.all.button {
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+      background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+      background-color:#33bdef;
+      border-radius:6px;
+      border:1px solid #057fd0;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:15px;
+      font-weight:bold;
+      padding:6px 16px;
+      text-decoration:none;
+      text-shadow:0px -1px 0px #5b6178;
+  }
+  button.all.button:hover {
+      background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+      background-color:#019ad2;
+  }
+  button.all.button:active {
+      position:relative;
+      top:1px;
+  }
+  
+  button.pub.button {
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+      background:linear-gradient(to bottom, #b7b7b9 5%, #a0a0a0 100%);
+      background-color: rgb(194, 189, 189);
+      border-radius:6px;
+      border:1px solid #c5c6c7;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:15px;
+      font-weight:bold;
+      padding:6px 16px;
+      text-decoration:none;
+      text-shadow:0px -1px 0px #5b6178;
+  }
+  button.pub.button:hover {
+      background:linear-gradient(to bottom, #9c9c9c 5%, #adadad 100%);
+      background-color:#969797;
+  }
+  button.pub.button:active {
+      position:relative;
+      top:1px;
+  }
+  
+  button.micro.button {
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+      background:linear-gradient(to bottom, #2af756 5%, #03d84a 100%);
+      background-color:#0af030;
+      border-radius:6px;
+      border:1px solid #09cc5a;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:15px;
+      font-weight:bold;
+      padding:6px 16px;
+      text-decoration:none;
+      text-shadow:0px -1px 0px #5b7867;
+  }
+  button.micro.button:hover {
+      background:linear-gradient(to bottom, #02cf0d 5%, #2af155 100%);
+      background-color:#08f113;
+  }
+  button.micro.button:active {
+      position:relative;
+      top:1px;
+  }
+  
+  button.large.button {
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+      background:linear-gradient(to bottom, #676a6b 5%, #0e0f0f 100%);
+      background-color:#0b0c0c;
+      border-radius:6px;
+      border:1px solid #050505;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:15px;
+      font-weight:bold;
+      padding:6px 16px;
+      text-decoration:none;
+      text-shadow:0px -1px 0px #5b6178;
+  }
+  button.large.button:hover {
+      background:linear-gradient(to bottom, #1e2020 5%, #6e7172 100%);
+      background-color:#080808;
+  }
+  button.large.button:active {
+      position:relative;
+      top:1px;
+  }
+
+  button.regional.button {
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+      background:linear-gradient(to bottom, #f08103 5%, #f5b555 100%);
+      background-color:#f38c06;
+      border-radius:6px;
+      border:1px solid #050505;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:15px;
+      font-weight:bold;
+      padding:6px 16px;
+      text-decoration:none;
+      text-shadow:0px -1px 0px #5b6178;
+  }
+  button.regional.button:hover {
+      background:linear-gradient(to bottom, #fabe4f 5%, #f87a03 100%);
+      background-color:#080808;
+  }
+  button.regional.button:active {
+      position:relative;
+      top:1px;
+  }
+  
+  button.new.button {
+    box-shadow: 0px 1px 0px 0px #f0f7fa;
+      background:linear-gradient(to bottom, #e67a7a 5%, #f50505 100%);
+      background-color:#be0808;
+      border-radius:6px;
+      border:1px solid #eb0707;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:16px;
+      font-weight:bold;
+    margin-top: 25px;
+      padding:6px 16px;
+      text-decoration:none;
+      text-shadow:0px -1px 0px #5b6178;
+  }
+  button.new.button:hover {
+      background:linear-gradient(to bottom, #f00808 5%, #dd6565 100%);
+      background-color:#f04545;
+  }
+  button.new.button:active {
+      position:relative;
+      top:1px;
+  }
   
   .filter {
     display: flex;
     flex-direction: row;    
     justify-content: space-between;
-    width: 600px;
     margin-left: auto;
     margin-right: auto;
+    width: 1000px;
   }
   
   .appInfo {
@@ -53,7 +248,7 @@
     margin-top: 75px;
   }
   
-  @media screen and (max-width: 635px) {
+  @media screen and (max-width: 1066px) {
     .container {
       width: 75%;
     }
@@ -74,24 +269,8 @@
       flex-direction: column;
       width: fit-content;
     }
-  
-    .all {
-      margin-top: 10px;
-    }
-  
-    .pub {
-      margin-top: 10px;
-    }
-  
-    .micro {
-      margin-top: 10px;
-    }
-  
-    .regional {
-      margin-top: 10px;
-    }
-  
-    .large {
+
+    .button {
       margin-top: 10px;
     }
   
@@ -100,13 +279,5 @@
       margin-left: auto;
       margin-right: auto;
     }
-  
-    .search {
-      margin-top: 10px;
-    }
   }
-  
-  
-  
-  
   
