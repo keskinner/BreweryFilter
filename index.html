@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -11,7 +11,7 @@
       <div class="container">
           <h1>Brewery Filter</h1>
           <div class="appInfo">
-            <p>Find your new Saturday spot here! <strong>Brewery Filter</strong> is an app that lets you search and filter through all the breweries in a given city. You can narrow down your search by the following types: brewery/pubs, miro breweries, large breweries, or regional breweries.  </p>
+            <p>Find your new Saturday spot here! <strong>Brewery Filter</strong> is an app that lets you search for a number of breweries in a given city. You can narrow down your search if you're looking for brewery/pubs, miro breweries, large breweries, or regional breweries.</p>
           </div>
           <div class="bottom">
             <input id="city" type="text" placeholder="Search by city">
@@ -23,9 +23,9 @@
       <div class="mapBox">
         <div class="mapWrap">
           <div id="map"></div>
-        </div>
       </div>
       <div class="searchParams">
+        <div class="display"></div>
         <h2>Filter search by:</h2>
         <div class="filter">
           <button class="all button">Show All</button>
@@ -34,6 +34,10 @@
           <button class="large button">Show Large Breweries</button>
           <button class="regional button">Show Regional Breweries</button>
         </div>
+        <div class="brewList">
+            <h2>Breweries shown on map:</h2>
+            <ul class="list"></ul>
+          </div>
         <button class="new button">Searh New A City</button>
       </div>
     </section>
