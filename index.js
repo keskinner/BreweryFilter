@@ -2,14 +2,6 @@ const APIKey = 'AIzaSyDcWXnfXKLVvCd785O_mcnwStiL8K3D1JE';
 
 const beerUrl = 'https://api.openbrewerydb.org/breweries?';
 
-const microUrl = 'https://api.openbrewerydb.org/breweries?by_type=micro&';
-
-const pubUrl = 'https://api.openbrewerydb.org/breweries?by_type=brewpub&';
-
-const largeUrl = 'https://api.openbrewerydb.org/breweries?by_type=large&';
-
-const regUrl = 'https://api.openbrewerydb.org/breweries?by_type=regional&';
-
 const mapUrl = 'https://maps.googleapis.com/maps/api/geocode/json?';
 
 var map;
@@ -51,70 +43,20 @@ function fetchCity(query) {
     });
 }
 
-function fetchBrewpub(query) {
+function fetchBrew(query, input) {
    const params = {
     by_city: query,
+    by_type: input,
   }
-  const queryString = formatingQueryParams(params);
-  const pUrl = pubUrl + queryString;
-  console.log(pUrl);
+  const queryString = formatQueryParams(params);
+  const bUrl = beerUrl + queryString;
+  console.log(bUrl);
 
-  fetch(pUrl)
+  fetch(bUrl)
   .then(response => response.json())
   .then(responseJson => displayMarkers(responseJson))
   .catch(error => {
     alert("There are no Brewerires/Pubs in this city.");
-    console.log(error)
-  })
-}
-
-function fetchMicro(query) {
-  const params = {
-    by_city: query,
-  }
-  const queryString = formatingQueryParams(params);
-  const mUrl = microUrl + queryString;
-  console.log(mUrl);
-
-  fetch(mUrl)
-  .then(response => response.json())
-  .then(responseJson => displayMarkers(responseJson))
-  .catch(error => {
-    alert("There are no micro breweries in this city.");
-    console.log(error)
-  })
-}
-
-function fetchLarge(query) {
-  const params = {
-    by_city: query,
-  }
-  const queryString = formatingQueryParams(params);
-  const lUrl = largeUrl + queryString;
-  console.log(lUrl);
-
-  fetch(lUrl)
-  .then(response => response.json())
-  .then(responseJson => displayMarkers(responseJson))
-  .catch(error => {
-    alert("There are no large breweries in this city.");
-    console.log(error)
-  })
-}
-
-function fetchRegional(query) {
-  const params = {
-    by_city: query,
-  }
-  const queryString = formatingQueryParams(params);
-  const rUrl = regUrl + queryString;
-  console.log(rUrl);
-
-  fetch(rUrl)
-  .then(response => response.json())
-  .then(responseJson => displayMarkers(responseJson))
-  .catch(error => {
-    alert("There are no regional breweries in this city.");
     console.log(error)
   })
 }
@@ -204,7 +146,7 @@ function watchAll() {
     makeMarkerArr();
     markerArr = [];
     let searchInput = $('#city').val();
-    fetchAll(searchInput);
+    fetchBrew(searchInput);
   })
 }
 
@@ -215,7 +157,8 @@ function watchBrewpub() {
     makeMarkerArr();
     markerArr = [];
     let searchInput = $('#city').val();
-    fetchBrewpub(searchInput);
+    let type = 'brewpub';
+    fetchBrew(searchInput, type);
     console.log('pub clicked on');
   })
 }
@@ -227,7 +170,8 @@ function watchMicro() {
     makeMarkerArr();
     markerArr = [];
     let searchInput = $('#city').val();
-    fetchMicro(searchInput);
+    let type = 'micro';
+    fetchBrew(searchInput, type);
     console.log('micro clicked on');
   })
 }
@@ -239,7 +183,8 @@ function watchLarge() {
     makeMarkerArr();
     markerArr = [];
     let searchInput = $('#city').val();
-    fetchLarge(searchInput);
+    let type = 'large';
+    fetchBrew(searchInput, type);
     console.log('large clicked on');
   })
 }
@@ -251,7 +196,8 @@ function watchRegional() {
     makeMarkerArr();
     markerArr = [];
     let searchInput = $('#city').val();
-    fetchRegional(searchInput);
+    let type = 'regional';
+    fetchBrew(searchInput, type);
     console.log('regional clicked on');
   })
 }
