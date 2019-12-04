@@ -146,7 +146,7 @@ function watchAll() {
     makeMarkerArr();
     markerArr = [];
     let searchInput = $('#city').val();
-    fetchBrew(searchInput);
+    fetchAll(searchInput);
   })
 }
 
