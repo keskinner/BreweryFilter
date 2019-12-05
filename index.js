@@ -16,7 +16,8 @@ function showLanding() {
 
 //takes user to inquiry page
 function watchSearch() {
-  $('button.search.button').on('click', event => {
+  $('form').submit(event => {
+    event.preventDefault();
     var searchInput = $('#city').val();
     fetchCity(searchInput);
     fetchAll(searchInput);
@@ -56,7 +57,7 @@ function fetchBrew(query, input) {
   .then(response => response.json())
   .then(responseJson => displayMarkers(responseJson))
   .catch(error => {
-    alert("There are no Brewerires/Pubs in this city.");
+    alert("Whoops, Sorry! There are no Breweries to show.");
     console.log(error)
   })
 }
@@ -66,7 +67,7 @@ function fetchAll(query) {
   const params = {
     by_city: query,
   }
-  const queryString = formatingQueryParams(params);
+  const queryString = formatQueryParams(params);
   const url = beerUrl + queryString;
   console.log(url);
 
@@ -74,14 +75,8 @@ function fetchAll(query) {
   .then(response => response.json())
   .then(responseJson => displayMarkers(responseJson))
   .catch(error => {
-    alert("There are no Breweries in this city. Please enter a different city.");
+    alert("Whoops, Sorry! There are no Breweries to show.");
     console.log(error)});
-}
-
-function formatingQueryParams(params) {
-  console.log('Query params are formatted!');
-  const queryItems = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-  return queryItems.join('+');
 }
 
 
@@ -113,27 +108,22 @@ function displayMarkers(responseJson) {
         return alert("There are no breweries to show.");
       }
 
-  for (let i = 0; i < responseJson.length; i++) {
-  
-  const brewLat = +responseJson[i].latitude
-  const brewLng = +responseJson[i].longitude
-
   //creates a marker at a given point
-    var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(brewLat, brewLng),
-      map: map,
-      title: responseJson[i].name
-    });
+  markerArr = responseJson.map(function(brewery, i) {
 
+  const brewLat = +brewery.latitude
+  const brewLng = +brewery.longitude
     $('.list').append(
       `<li>
-        <a href="${responseJson[i].website_url}" target="${responseJson[i].website_url}">${responseJson[i].name}</a>
+        <a href="${brewery.website_url}" target="${brewery.website_url}">${brewery.name}</a>
       </li>`
     );
-
-    markerArr.push(marker);
-  }
-
+    return new google.maps.Marker({
+      position: new google.maps.LatLng(brewLat, brewLng),
+      map: map,
+      title: brewery.name
+    });
+  })
   console.log('markers displayed');
   $('.landing').hide();
   $('.inquiry').show();

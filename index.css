@@ -1,4 +1,4 @@
- body {
+body {
     background-color: white;
     color: rgb(52, 78, 107);
     font-family: courier;
@@ -305,6 +305,7 @@
   }
 }
   
+
   @media screen and (max-width: 500px) {
   .mapWrap {
     width: 100%;
@@ -312,11 +313,17 @@
 
   .brewList {
     line-height: 1.5;
-    overflow: auto;
     background-color: rgb(52, 78, 107);
     color: white;
     margin-top: 25px;
     position: relative;
     width: 100%;
+    right: 0px;
+    overflow: hidden;
+    height: fit-content;
+  }
+
+  .new {
+    margin-bottom: 20px;
   }
 }
