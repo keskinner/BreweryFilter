@@ -8,13 +8,15 @@ var map;
 
 var markerArr = [];
 
+var breweryArr = [];
+
 //hides inquiry page and creates landing page
 function showLanding() {
   $('.inquiry').hide();
   console.log('App loaded and waiting!');
 }
 
-//takes user to inquiry page
+//takes user to inquiry page 
 function watchSearch() {
   $('form').submit(event => {
     event.preventDefault();
@@ -44,24 +46,6 @@ function fetchCity(query) {
     });
 }
 
-function fetchBrew(query, input) {
-   const params = {
-    by_city: query,
-    by_type: input,
-  }
-  const queryString = formatQueryParams(params);
-  const bUrl = beerUrl + queryString;
-  console.log(bUrl);
-
-  fetch(bUrl)
-  .then(response => response.json())
-  .then(responseJson => displayMarkers(responseJson))
-  .catch(error => {
-    alert("Whoops, Sorry! There are no Breweries to show.");
-    console.log(error)
-  })
-}
-
 //fetches ALL the breweries in a city
 function fetchAll(query) {
   const params = {
@@ -76,7 +60,7 @@ function fetchAll(query) {
   .then(responseJson => displayMarkers(responseJson))
   .catch(error => {
     alert("Whoops, Sorry! There are no Breweries to show.");
-    console.log(error)});
+    console.log(error)});  
 }
 
 
@@ -104,39 +88,46 @@ function displayMap(responseJson) {
 //creates markers for breweries in picked city
 function displayMarkers(responseJson) {
 
-    if (!responseJson || responseJson.length === 0) {
+    breweryArr = responseJson;
+
+    if (!breweryArr || breweryArr.length === 0) {
         return alert("There are no breweries to show.");
       }
 
-  //creates a marker at a given point
-  markerArr = responseJson.map(function(brewery, i) {
+    filter('all');
 
-  const brewLat = +brewery.latitude
-  const brewLng = +brewery.longitude
-    $('.list').append(
-      `<li>
-        <a href="${brewery.website_url}" target="${brewery.website_url}">${brewery.name}</a>
-      </li>`
-    );
-    return new google.maps.Marker({
-      position: new google.maps.LatLng(brewLat, brewLng),
-      map: map,
-      title: brewery.name
-    });
+    $('.landing').hide();
+    $('.inquiry').show();
+}
+
+function filter(type) {
+
+  markerArr = breweryArr.map(function(brewery, i) {
+    if (brewery.brewery_type === type || type === 'all') {
+      const brewLat = +brewery.latitude
+      const brewLng = +brewery.longitude
+      $('.list').append(
+        `<li>
+          <a href="${brewery.website_url}" target="${brewery.website_url}">${brewery.name}</a>
+        </li>`
+      );
+      return new google.maps.Marker({
+        position: new google.maps.LatLng(brewLat, brewLng),
+        map: map,
+        title: brewery.name
+      });
+    }
+  }).filter(function(data) {
+    return data !== undefined;
   })
-  console.log('markers displayed');
-  $('.landing').hide();
-  $('.inquiry').show();
 }
 
 function watchAll() {
   $('button.all').on('click', event => {
     $('.list').empty();
     $('.list').prepend(`<h3>All Breweries</h3>`);
-    makeMarkerArr();
-    markerArr = [];
-    let searchInput = $('#city').val();
-    fetchAll(searchInput);
+    clearMarkerArr();
+    filter('all');
   })
 }
 
@@ -144,11 +135,8 @@ function watchBrewpub() {
   $('button.pub').on('click', event => {
     $('.list').empty();
     $('.list').prepend(`<h3>Breweries/Pubs</h3>`);
-    makeMarkerArr();
-    markerArr = [];
-    let searchInput = $('#city').val();
-    let type = 'brewpub';
-    fetchBrew(searchInput, type);
+    clearMarkerArr();
+    filter('brewpub');
     console.log('pub clicked on');
   })
 }
@@ -157,11 +145,8 @@ function watchMicro() {
   $('button.micro').on('click', event => {
     $('.list').empty();
     $('.list').prepend(`<h3>Micro Breweries</h3>`);
-    makeMarkerArr();
-    markerArr = [];
-    let searchInput = $('#city').val();
-    let type = 'micro';
-    fetchBrew(searchInput, type);
+    clearMarkerArr();
+    filter('micro');
     console.log('micro clicked on');
   })
 }
@@ -170,11 +155,8 @@ function watchLarge() {
   $('button.large').on('click', event => {
     $('.list').empty();
     $('.list').prepend(`<h3>Large Breweries</h3>`);
-    makeMarkerArr();
-    markerArr = [];
-    let searchInput = $('#city').val();
-    let type = 'large';
-    fetchBrew(searchInput, type);
+    clearMarkerArr();
+    filter('large');
     console.log('large clicked on');
   })
 }
@@ -183,16 +165,13 @@ function watchRegional() {
   $('button.regional').on('click', event => {
     $('.list').empty();
     $('.list').prepend(`<h3>Regional Breweries</h3>`);
-    makeMarkerArr();
-    markerArr = [];
-    let searchInput = $('#city').val();
-    let type = 'regional';
-    fetchBrew(searchInput, type);
+    clearMarkerArr();
+    filter('regional');
     console.log('regional clicked on');
   })
 }
 
-function makeMarkerArr() {
+function clearMarkerArr() {
   markerArr.forEach(function(marker) {
     marker.setMap(null);
   })
