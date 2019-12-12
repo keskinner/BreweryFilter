@@ -7,6 +7,10 @@ body {
   h1 {
     font-size: 36px;
   }
+
+  h3 {
+    text-align: center;
+  }
   
   #map{
     width: 95%;
@@ -43,16 +47,18 @@ body {
     position: fixed;
     top: 10px;
     right: 10px;
-    width: 33%;
+    width: 30%;
     height: 550px;
     line-height: 1.5;
     overflow: auto;
     background-color: rgb(52, 78, 107);
     color: white;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .list {
-    list-style-type: none;
+    text-align: left;
   }
 
  .searchParams {
@@ -306,7 +312,7 @@ body {
 }
   
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 700px) {
   .mapWrap {
     width: 100%;
   }
@@ -315,12 +321,13 @@ body {
     line-height: 1.5;
     background-color: rgb(52, 78, 107);
     color: white;
-    margin-top: 25px;
+    margin-top: 10px;
     position: relative;
     width: 100%;
     right: 0px;
     overflow: hidden;
     height: fit-content;
+    padding: 0px;
   }
 
   .new {
