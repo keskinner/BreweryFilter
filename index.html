@@ -11,7 +11,7 @@
       <div class="container">
           <h1>Brewery Finder</h1>
           <div class="appInfo">
-            <p>Find your new Saturday spot here! <strong>Brewery Finder</strong> is An app that lets you search for different types of breweries in a given city. Search results are then shown on a map with markers. You can change the breweries that are shown on the map by the following types: brewery/pubs, miro breweries, large breweries, or regional breweries. </p>
+            <p>Find your new Saturday spot here! <strong>Brewery Finder</strong> is an app that lets you search for different types of breweries in a given city. Search results are then shown on a map with markers. You can change the breweries that are shown on the map by the following types: brewery/pubs, miro breweries, large breweries, or regional breweries. </p>
           </div>
           <form class="bottom">
             <input id="city" type="text" placeholder="Search by city">
@@ -23,6 +23,10 @@
         <div class="mapWrap">
           <div id="map"></div>
       </div>
+      <div class="brewList">
+        <h2>Breweries shown on map:</h2>
+        <ul class="list"></ul>
+      </div>
       <div class="searchParams">
         <h2>Filter search by:</h2>
         <div class="filter">
@@ -32,11 +36,7 @@
           <button class="large button">Show Large Breweries</button>
           <button class="regional button">Show Regional Breweries</button>
         </div>
-        <div class="brewList">
-            <h2>Breweries shown on map:</h2>
-            <ul class="list"></ul>
-          </div>
-        <button class="new button">Searh New A City</button>
+        <button class="new button">Searh A New City</button>
       </div>
     </section>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcWXnfXKLVvCd785O_mcnwStiL8K3D1JE&libraries=places"
