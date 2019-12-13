@@ -103,19 +103,21 @@ function displayMarkers(responseJson) {
 function filter(type) {
 
   markerArr = breweryArr.map(function(brewery, i) {
+    const brewLat = +brewery.latitude
+    const brewLng = +brewery.longitude
     if (brewery.brewery_type === type || type === 'all') {
-      const brewLat = +brewery.latitude
-      const brewLng = +brewery.longitude
-      $('.list').append(
-        `<li>
-          <a href="${brewery.website_url}" target="${brewery.website_url}">${brewery.name}</a>
-        </li>`
-      );
-      return new google.maps.Marker({
-        position: new google.maps.LatLng(brewLat, brewLng),
-        map: map,
-        title: brewery.name
-      });
+      if(brewLat !== 0 || brewLng !== 0) {
+        $('.list').append(
+          `<li>
+            <a href="${brewery.website_url}" target="${brewery.website_url}">${brewery.name}</a>
+          </li>`
+        );
+        return new google.maps.Marker({
+          position: new google.maps.LatLng(brewLat, brewLng),
+          map: map,
+          title: brewery.name
+        });
+      }
     }
   }).filter(function(data) {
     return data !== undefined;
