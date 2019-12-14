@@ -100,6 +100,7 @@ function displayMarkers(responseJson) {
     $('.inquiry').show();
 }
 
+//filters MarkerArr for brewery types
 function filter(type) {
 
   markerArr = breweryArr.map(function(brewery, i) {
@@ -120,8 +121,13 @@ function filter(type) {
       }
     }
   }).filter(function(data) {
-    return data !== undefined;
+    return data !== undefined && data !== null;
   })
+
+  if (markerArr == 0 ) {
+    alert('There are no Breweries to show');
+    $('.list').append(`<p>There are no Breweries to show</p>`);
+  }
 }
 
 function watchAll() {
